@@ -36,18 +36,6 @@ public class CidadeDAO {
             System.out.println("ERRO: " + e.getMessage());
             this.con = null;
         }
-
-        /* public void salvar(Object obj){
-        try {
-            em.getTransaction().begin();
-            em.persist(obj);
-            em.getTransaction().commit();
-        } catch (Exception e) {
-            System.out.println("ERRO: " + e.getMessage());
-        }finally{
-            em.close();
-            emf.close();
-        }*/
     }
 
     public int inserir(Cidades c) {
@@ -71,7 +59,7 @@ public class CidadeDAO {
 
             }
             cmd.close();
-            return -1;
+            return 1;
 
         } catch (Exception e) {
             System.out.println("ERRO: " + e.getMessage());

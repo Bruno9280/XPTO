@@ -179,20 +179,29 @@ public class API {
     /**
      * PUT method for updating or creating an instance of API
      *
-     * @param content representation for the resource
+     * @param ibge_id
+     * @param uf
+     * @param name
+     * @param capital
+     * @param lon
+     * @param lat
+     * @param no_accents
+     * @param alternative_names
+     * @param microregion
+     * @param mesoregion
+     * @return 
      */
-    @GET
-    @Consumes(MediaType.APPLICATION_JSON)
+    @POST
     @Produces(MediaType.APPLICATION_JSON)
     @Path("Cadastro/Cidades/{ibge_id}/{uf}/{name}/{capital}/{lon}/{lat}/{no_accents}/{alternative_names}/{microregion}/{mesoregion}")
     public String NovaCidade(@PathParam("ibge_id") int ibge_id, @PathParam("uf") String uf, @PathParam("name") String name, @PathParam("capital") String capital, @PathParam("lon") double lon, @PathParam("lat") double lat, @PathParam("no_accents") String no_accents, @PathParam("alternative_names") String alternative_names, @PathParam("microregion") String microregion, @PathParam("mesoregion") String mesoregion) {
         Cidades cidade = new Cidades(ibge_id, uf, name, capital, lon, lat, no_accents, alternative_names, microregion, mesoregion);
         CidadeDAO dao = new CidadeDAO();
-        dao.inserir(cidade);
-        return null;
+        Gson gs = new Gson();
+        return gs.toJson(dao.inserir(cidade));
     }
 
-    @GET
+    @DELETE
     @Produces(MediaType.APPLICATION_JSON)
     @Path("Deletar/Cidades/{cidade}")
     public String deleteCidade(@PathParam("cidade") String cidade) {
